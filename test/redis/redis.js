@@ -3,6 +3,8 @@
  */
 'use strict';
 var assert = require('assert');
+var redis = require('redis');
+var redis_conf = require('../../conf/redis-conf');
 describe('Array', function(){
 	describe('#indexOf2()', function(){
 		it('should be -1 if there is no the value in array', function(){
@@ -15,8 +17,7 @@ describe('Array', function(){
 describe('redis', function(){
 	describe('set get', function(){
 		it('set cl cailong and get cl is cailong', function(done){
-			var redis = require('redis');
-			var client = redis.createClient(6379, '192.168.62.129', {});
+			var client = redis.createClient(redis_conf.port, redis_conf.ip, {});
 			client.on('erroe', function(err){
 				console.log('Error '+err);
 			});
