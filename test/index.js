@@ -3,3 +3,4 @@
  */
 'use strict';
 require('./redis/redis');
+require('./gearman/gearman');
