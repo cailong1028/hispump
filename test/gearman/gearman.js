@@ -23,19 +23,17 @@ var job = client.submitJob('reverse', 'hello world!');
 job.on('workData', function(data) {
 	console.log('WORK_DATA >>> ' + data);
 });
+
 job.on('complete', function() {
 	console.log('RESULT >>> ' + job.response);
 	client.close();
-});
-describe('gearman', function(){
-	describe('worker register and client trigger', function(){
-		it('show responese returned by gearman', function(){
-			job.on('complete', function() {
-				console.log('RESULT >>> ' + job.response);
-				client.close();
-				worker.close();
+	worker.close();
+	describe('gearman', function(){
+		describe('worker register and client trigger', function(){
+			it('show responese returned by gearman', function(){
 				assert.equal(job.response, '!dlrow olleh');
-			});
-		})
+			})
+		});
 	});
 });
+
