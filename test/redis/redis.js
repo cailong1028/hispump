@@ -5,10 +5,8 @@
 var assert = require('assert');
 var redis = require('redis');
 var redis_conf = require('../../conf/redis-conf');
-var client = redis.createClient(redis_conf.port, redis_conf.ip, {});
-client.on('erroe', function(err){
-	console.log('Error '+err);
-});
+var base = require('../../lib/base');
+var hisredis = base.hisredis;
 describe('Array', function(){
 	describe('#indexOf2()', function(){
 		it('should be -1 if there is no the value in array', function(){
@@ -21,10 +19,7 @@ describe('Array', function(){
 describe('redis', function(){
 	describe('set get', function(){
 		it('set cl cailong and get cl is cailong', function(done){
-			if(!client.connected){
-				console.log('not connected!');
-				redis.createClient(redis_conf.port, redis_conf.ip, {});
-			}
+			var client = redis.createClient(redis_conf.port, redis_conf.ip);
 			client.set('cl', 'cailong', redis.print);
 			//client.hset('hash key', 'hash set 1', 'sone value', redis.print);
 			client.get('cl', function(err, reply){
@@ -35,9 +30,7 @@ describe('redis', function(){
 	});
 	describe('use same client', function(){
 		it('use some client', function(done){
-			if(!client.connected){
-				redis.createClient(redis_conf.port, redis_conf.ip, {});
-			}
+			var client = redis.createClient(redis_conf.port, redis_conf.ip);
 			client.set('cl', 'cailong', redis.print);
 			//client.hset('hash key', 'hash set 1', 'sone value', redis.print);
 			client.get('cl', function(err, reply){
@@ -76,4 +69,32 @@ describe('redis', function(){
 			})
 		})
 	});
+	{
+		var client = redis.createClient(redis_conf.port, redis_conf.ip, {detect_buffers: true});
+		client.set('foo', 'bar');
+		client.get('foo', function (err, replay) {
+			describe('buffer', function () {
+				it('show buffers', function () {
+					assert.equal('bar', replay);
+				})
+			});
+			client.quit();
+		});
+	}
+	{
+		var client = redis.createClient(redis_conf.port, redis_conf.ip, {detect_buffers: true});
+		client.get(new Buffer('foo'), function (err, replay) {
+			describe('buffer', function () {
+				it('show buffers', function () {
+					console.log('aaaa-->'+replay);
+					assert.equal('bar', replay);
+				})
+			});
+			client.quit();
+		});
+	}
+	//sub pub
+
+	//rpoplpush + lrem
+
 });

@@ -20,10 +20,13 @@ var worker = gearmanode.worker({
 
 worker.addFunction('syncToRedis', function(job){
 	job.sendWorkData(job.payload);
-	console.log('job.payload-->' + job.payload.toString());
 	updateRedis(JSON.parse(job.payload.toString()));
 	job.workComplete('set to redis successful');
 },{toStringEncoding: 'ascii'});
+
+worker.addFunction('test', function(job){
+	job.workComplete('just a test function');
+});
 
 var updateRedis = function(json){
 	if(!redisClient.connected){

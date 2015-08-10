@@ -3,5 +3,6 @@
  */
 'use strict';
 require('./redis/redis');
+require('./redis/redis2');
 require('./gearman/gearman');
 require('./gearman/gearman-redis');
