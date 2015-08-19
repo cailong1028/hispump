@@ -9,6 +9,9 @@ var routes = require('./lib/routes/index');
 var users = require('./lib/routes/users');
 var upload = require('./lib/routes/upload');
 
+var redisBrpopTask = require('./lib/biz/redisBrpopTask');
+redisBrpopTask();
+
 var app = express();
 
 // view engine setup
