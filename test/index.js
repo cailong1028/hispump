@@ -6,3 +6,4 @@ require('./redis/redis');
 require('./redis/redis2');
 require('./gearman/gearman');
 require('./gearman/gearman-redis');
+require('./mysql/mysql1');

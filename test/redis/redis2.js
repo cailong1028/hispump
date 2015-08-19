@@ -52,5 +52,31 @@ describe('hisredis', function(){
 				done();
 			});
 		});
+		it('hmset hmget', function (done) {
+			var client = hisredis.getRedisClient();
+			client.hmset('map_test_mocha', 'key1', 'value1');
+			client.hmget('map_test_mocha', 'key1', function(err, replay){
+				assert.equal('value1', replay);
+				done();
+			});
+		});
+		it('lpush and lrange ! well done! well job!', function (done) {
+			var client = hisredis.getRedisClient();
+			var user1 = {id: 1, name: 'zhang'},
+				user2 = {id: 2, name: 'li'};
+			client.lpush('list_test_mocha', JSON.stringify(user1), JSON.stringify(user2));
+			client.lrange('list_test_mocha', 0, -1, function(err, replay){
+				assert.equal('li', JSON.parse(replay[0]).name);
+				client.brpop('list_test_mocha', 2);
+				client.brpop('list_test_mocha', 2);
+				done();
+				/*while(client.brpop('list_test_mocha') === true){
+					console.log('1');
+				};
+				console.log('brpop-->'+client.brpop('list_test_mocha', function(replay){
+					console.log('pop data-->'+replay);
+				}));*/
+			});
+		});
 	});
 });

@@ -1,0 +1,26 @@
+{
+  "host": "192.168.62.130",
+  "port": 3306,
+  "database": "hispump",
+  "user": "cl",
+  "password": "cl",
+  "charset": "utf8_general_ci",
+  "description": {
+    "master": {
+      "host": "192.168.62.130",
+      "port": 3306,
+      "database": "hispump",
+      "user": "cl",
+      "password": "cl",
+      "charset": "utf8_general_ci"
+    },
+    "slave1": {
+      "host": "192.168.62.130",
+      "port": 3306,
+      "database": "hispump",
+      "user": "cl",
+      "password": "cl",
+      "charset": "utf8_general_ci"
+    }
+  }
+}
