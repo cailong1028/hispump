@@ -1,4 +1,5 @@
 {
   "ip": "192.168.62.130",
-  "port": 6379
+  "port": 6379,
+  "upload_channel_name": "upload-channel"
 }

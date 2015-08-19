@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('hispump:server');
 var http = require('http');
+var redisBrpopTask = require('../lib/biz/redisBrpopTask');
 
 /**
  * Get port from environment and store in Express.
@@ -88,3 +89,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+redisBrpopTask();
