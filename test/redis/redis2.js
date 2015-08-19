@@ -67,15 +67,13 @@ describe('hisredis', function(){
 			client.lpush('list_test_mocha', JSON.stringify(user1), JSON.stringify(user2));
 			client.lrange('list_test_mocha', 0, -1, function(err, replay){
 				assert.equal('li', JSON.parse(replay[0]).name);
-				client.brpop('list_test_mocha', 2);
-				client.brpop('list_test_mocha', 2);
-				done();
-				/*while(client.brpop('list_test_mocha') === true){
-					console.log('1');
-				};
-				console.log('brpop-->'+client.brpop('list_test_mocha', function(replay){
-					console.log('pop data-->'+replay);
-				}));*/
+				client.brpop('list_test_mocha', 2, function(listName, item){
+					assert.equal('zhang', JSON.parse(item[1]).name);
+					client.brpop('list_test_mocha', 2, function(listName, item){
+						assert.equal('li', JSON.parse(item[1]).name);
+						done();
+					});
+				});
 			});
 		});
 	});
