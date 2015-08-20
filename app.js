@@ -7,9 +7,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//routers
 var routes = require('./lib/routes/index');
 var users = require('./lib/routes/users');
 var upload = require('./lib/routes/upload');
+
+//pools resource
+var base = require('./lib/base');
+
 
 var app = express();
 
@@ -23,6 +28,12 @@ if (process.env.NODE_ENV && process.env.NODE_ENV) {
 if(global.env === 'production'){
 
 }
+
+//create mysql pool cluster
+base.hismpc();
+//create redis pool
+base.hisrp();
+
 //brpop UploadChannel
 var redisBrpopTask = require('./lib/biz/redisBrpopTask');
 redisBrpopTask();
