@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+/*global require*/
 var app = require('../app');
 var debug = require('debug')('hispump:server');
 var http = require('http');

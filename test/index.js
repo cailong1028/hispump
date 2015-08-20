@@ -1,6 +1,7 @@
 /**
  * Created by cailong on 2015/7/31.
  */
+/*global require*/
 'use strict';
 require('./redis/redis');
 require('./redis/redis2');

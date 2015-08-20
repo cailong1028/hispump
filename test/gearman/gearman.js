@@ -1,6 +1,7 @@
 /**
  * Created by cailong on 2015/8/3.
  */
+/*global require, describe*/
 'use strict';
 var assert = require('assert');
 var gearmanode = require('gearmanode');

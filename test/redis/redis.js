@@ -1,6 +1,7 @@
 /**
  * Created by cailong on 2015/7/29.
  */
+/*global require, describe*/
 'use strict';
 var assert = require('assert');
 var redis = require('redis');

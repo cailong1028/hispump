@@ -1,6 +1,7 @@
 /**
  * Created by cailong on 2015/8/4.
  */
+/*global require, describe*/
 'use strict';
 var _ = require('underscore');
 var redis = require('redis');

@@ -1,6 +1,7 @@
 /**
  * Created by cailong on 2015/8/5.
  */
+/*global require, describe*/
 var gearmanode = require('gearmanode');
 var gearman_conf = require('../../conf/gearman-conf');
 var client = gearmanode.client({

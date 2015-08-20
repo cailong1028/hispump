@@ -2,7 +2,7 @@
  * Created by cailong on 2015/8/18.
  */
 'use strict';
-/*global describe*/
+/*global require, describe*/
 var assert = require('assert');
 var base = require('../../lib/base');
 var UUID = base.UUID;

@@ -2,6 +2,7 @@
  * Created by cailong on 2015/8/19.
  */
 'ues strict';
+/*global require, describe*/
 var assert = require('assert');
 var UploadBiz = require('../../lib/biz/UploadBiz');
 
