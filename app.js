@@ -38,6 +38,9 @@ base.hisrp();
 var redisBrpopTask = require('./lib/biz/redisBrpopTask');
 redisBrpopTask();
 
+var dbScanTask =  require('./lib/biz/dbScanTask');
+dbScanTask();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

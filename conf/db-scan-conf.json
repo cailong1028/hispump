@@ -1,0 +1,16 @@
+{
+  "dbScanList": [
+    {
+     "tableName": "CycleDrugSheetDetail",
+      "nowId": 0,
+      "nowTime": 0,
+      "timeInterval": 60
+    },
+    {
+      "tableName": "APPENDSHEET",
+      "nowId": 0,
+      "nowTime": 0,
+      "timeInterval": 50
+    }
+  ]
+}
