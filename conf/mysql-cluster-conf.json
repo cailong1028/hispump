@@ -1,18 +1,20 @@
 {
   "master": {
-    "host": "127.0.0.1",
+    "host": "192.168.62.130",
     "port": 3306,
-    "database": "RIVAMEDDBCENTER",
-    "user": "root",
-    "password": "",
-    "charset": "UTF8"
+    "database": "hispump",
+    "user": "cl",
+    "password": "cl",
+    "charset": "UTF8",
+    "ping-table": "test"
   },
   "slave1": {
-    "host": "127.0.0.1",
+    "host": "192.168.62.130",
     "port": 3306,
-    "database": "RIVAMEDDBCENTER",
-    "user": "root",
-    "password": "",
-    "charset": "UTF8"
+    "database": "hispump",
+    "user": "cl",
+    "password": "cl",
+    "charset": "UTF8",
+    "ping_table": "test"
   }
 }

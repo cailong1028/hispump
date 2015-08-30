@@ -1,0 +1,28 @@
+{
+  "dataType": "CycleDrugSheetDetail",
+  "depID": "005",
+  "devID": "38-B1-DB-32-42-2D",
+  "dataTime": "2014-10-11 9:43:38",
+  "version": "1.0",
+  "toSys": "Rivamed-HIS",
+  "RivamedappData": {
+    "ID": "",
+    "FormID": "",
+    "DrugID": "",
+    "IsCycle": "",
+    "CycleDate": "",
+    "CartCode": "",
+    "ISSYNC": "",
+    "SYNCSN": ""
+  },
+  "HISappData": {
+    "ID": "",
+    "FormID": "",
+    "DrugID": "",
+    "IsCycle": "",
+    "CycleDate": "",
+    "CartCode": "",
+    "ISSYNC": "",
+    "SYNCSN": ""
+  }
+}
