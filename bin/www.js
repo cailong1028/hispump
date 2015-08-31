@@ -1,12 +1,4 @@
 #!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-/*global require, process*/
-
-var base = require('../lib/base');
-
 var server_app = function () {
 	var app = require('../app');
 	var debug = require('debug')('hispump:server');
@@ -93,13 +85,4 @@ var server_app = function () {
 		debug('Listening on ' + bind);
 	}
 };
-
-var dtdFunc = function () {
-	var dtd = new base.Dtd;
-	setTimeout(function () {
-		dtd.resolve();
-	}, 0);
-	return dtd.promise();
-};
-
-dtdFunc().done(server_app);
+server_app();
