@@ -9,7 +9,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var log4js = require('log4js');
+var base = require('./lib/base');
+var log = base.log;
 //routers
 var routes = require('./lib/routes/index');
 var users = require('./lib/routes/users');
@@ -17,7 +19,9 @@ var upload = require('./lib/routes/upload');
 
 var base = require('./lib/base');
 var redisBrpopTask = require('./lib/task/redisBrpopTask');
+var RedisBrpopTask = require('./lib/task/RedisBrpopTask2');
 var downloadTask = require('./lib/task/downloadTask');
+var DownloadTask = require('./lib/task/DownloadTask2');
 
 var app = express();
 
@@ -32,7 +36,9 @@ var appServer = function(){
 
 	// uncomment after placing your favicon in /public
 	//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-	app.use(logger('dev'));
+	//app.use(logger('dev'));
+	//use log4js replace morgan
+	app.use(log4js.connectLogger(log, { level: 'auto'}));
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({extended: false}));
 	app.use(cookieParser());
@@ -80,8 +86,18 @@ beforeServerStartTask().done(appServer).fail(function () {
 });
 
 var afterSetAppServer = function(){
-	redisBrpopTask();
-	downloadTask();
+	var watcher = new base.Watcher();
+
+	var downloadTask = new DownloadTask();
+	downloadTask.run();
+
+	var redisBrpopTask = new RedisBrpopTask();
+	redisBrpopTask.run();
+
+	watcher.addTask(downloadTask);
+	watcher.addTask(redisBrpopTask);
+	//redisBrpopTask();
+	//downloadTask();
 	/*var dbScanTask = require('./lib/task/dbScanTask');
 	 dbScanTask();*/
 };
