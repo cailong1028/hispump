@@ -4,6 +4,7 @@
 var _ = require('underscore');
 //var $def = require('jquery-deferred');
 var express = require('express');
+var ejs = require('ejs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -14,14 +15,16 @@ var base = require('./lib/base');
 var log = base.log;
 //routers
 var routes = require('./lib/routes/index');
-var users = require('./lib/routes/users');
 var upload = require('./lib/routes/upload');
+var auth = require('./lib/routes/auth');
+var api = require('./lib/routes/api');
 
-var base = require('./lib/base');
-var redisBrpopTask = require('./lib/task/redisBrpopTask');
-var RedisBrpopTask = require('./lib/task/RedisBrpopTask2');
-var downloadTask = require('./lib/task/downloadTask');
-var DownloadTask = require('./lib/task/DownloadTask2');
+var hismpc = base.hismpc();
+var RedisBrpopTask = require('./lib/task/RedisBrpopTask');
+var DownloadTask = require('./lib/task/DownloadTask');
+
+var sessionFilter = require('./lib/filter/sessionFilter');
+var urlFilter = require('./lib/filter/urlFilter');
 
 var app = express();
 
@@ -30,9 +33,14 @@ var beforeServerStartTask = require('./lib/task/beforeServerStartTask');
 //TODO use dtd to control when it is done
 
 var appServer = function(){
+
+
 	// view engine setup
 	app.set('views', path.join(__dirname, 'views'));
-	app.set('view engine', 'jade');
+	//app.set('view engine', 'jade');
+	//use ejs html replace jade
+	app.engine('.html', ejs.__express);
+	app.set('view engine', 'html');
 
 	// uncomment after placing your favicon in /public
 	//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -44,9 +52,19 @@ var appServer = function(){
 	app.use(cookieParser());
 	app.use(express.static(path.join(__dirname, 'public')));
 
-	app.use('/', routes);
-	app.use('/users', users);
+	//auth
+	app.use('/auth', auth);
+	//TODO openAPI no session but need auth token(eg: upload)
 	app.use('/upload', upload);
+
+	//session filter
+	app.use('/*', sessionFilter.filter);
+
+	//need auth token OR session
+	app.use('/api', api);
+	app.use('/', routes);
+	//Just GET
+	app.get('/*', urlFilter.filter);
 
 	// catch 404 and forward to error handler
 	app.use(function (req, res, next) {
@@ -78,6 +96,7 @@ var appServer = function(){
 			error: {}
 		});
 	});
+
 	afterSetAppServer();
 };
 
@@ -96,8 +115,6 @@ var afterSetAppServer = function(){
 
 	watcher.addTask(downloadTask);
 	watcher.addTask(redisBrpopTask);
-	//redisBrpopTask();
-	//downloadTask();
 	/*var dbScanTask = require('./lib/task/dbScanTask');
 	 dbScanTask();*/
 };
