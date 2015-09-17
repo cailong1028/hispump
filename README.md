@@ -51,7 +51,7 @@ pm2.json DEMO
         "instances"  : 0,
         "exec_mode"  : "cluster_mode",
         "exec_interpreter" : "node",
-        "watch"            : true,
+        "watch"            : ["lib", "bin/www.js", "app.js"],
         "ignore_watch"     : ["[\\/\\\\]\\./", "node_modules", "log*", "public", "test", ".gitignore", ".jshintrc", "npm-debug.log", "README.md", "json"],
         "min_uptime"       : "1000s",
         "autorestart"      : true,
