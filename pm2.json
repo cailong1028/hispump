@@ -1,0 +1,22 @@
+{
+  "apps" : [{
+    "name"        : "hispump",
+    "cwd"         : ".",
+    "script"      : "./bin/www.js",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": 3000
+    },
+    "instances"  : 0,
+    "exec_mode"  : "cluster_mode",
+    "exec_interpreter" : "node",
+    "watch"            : true,
+    "ignore_watch"     : ["[\\/\\\\]\\./", "node_modules", "log*", "public", "test", ".gitignore", ".jshintrc", "npm-debug.log", "README.md", "json"],
+    "min_uptime"       : "1000s",
+    "autorestart"      : true,
+    "max_restarts"     : 15,
+    "log_date_format"  : "YYYY-MM-DD HH:mm Z",
+    "error_file"       : "log/pm2/node-app.stderr.log",
+    "out_file"         : "log/pm2/node-app.stdout.log"
+  }]
+}

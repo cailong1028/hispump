@@ -7,4 +7,3 @@ bower_components
 npm-debug.log
 .git
 log*
-pm2.json
