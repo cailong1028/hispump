@@ -15,6 +15,7 @@
                     username: username,
                     password: sha1(password)
                 }, 'json').done(function(res){
+                    //setTimeout(50)
                     window.location.href = '/';
                     return false;
                 }).fail(function(err){
