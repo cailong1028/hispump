@@ -16,6 +16,7 @@ var log = base.log;
 //routers
 var routes = require('./lib/routes/index');
 var upload = require('./lib/routes/upload');
+var heartbeat = require('./lib/routes/heartbeat');
 var auth = require('./lib/routes/auth');
 var api = require('./lib/routes/api');
 
@@ -51,7 +52,8 @@ var appServer = function(){
 	app.use(bodyParser.urlencoded({extended: false}));
 	app.use(cookieParser());
 	app.use(express.static(path.join(__dirname, 'public')));
-
+	//heartbeat
+	app.use('/heartbeat', heartbeat);
 	//auth
 	app.use('/auth', auth);
 	//TODO openAPI no session but need auth token(eg: upload)
