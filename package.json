@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3000 pm2 start ./bin/www.js"
+    "start": "PORT=3000 node ./bin/www.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

@@ -8,3 +8,6 @@ npm-debug.log
 .git
 log*
 pm2.json
+public/jslib/*
+public/fonts/*
+public/linkdeskapp/*

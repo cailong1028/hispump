@@ -5,6 +5,7 @@
   "dataTime": "2014-10-11 9:43:38",
   "version": "1.0",
   "toSys": "Rivamed-HIS",
+  "OperateType": "insert",
   "RivamedappData": {
     "ID": "",
     "FormID": "",

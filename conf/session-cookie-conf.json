@@ -1,0 +1,12 @@
+{
+  "session": {
+    "expireTime": 900
+  },
+  "cookie": {
+    "cookieName": "hispump",
+    "cookieSettings": {
+      "maxAge": 86400000,
+      "httpOnly": true
+    }
+  }
+}
