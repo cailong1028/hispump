@@ -16,6 +16,7 @@
     "jquery-deferred": "^0.3.0",
     "log4js": "^0.6.26",
     "mocha": "^2.2.5",
+    "moment": "^2.10.6",
     "morgan": "~1.6.1",
     "mysql": "^2.8.0",
     "node-schedule": "^0.2.9",

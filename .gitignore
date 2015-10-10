@@ -11,3 +11,5 @@ pm2.json
 public/jslib/*
 public/fonts/*
 public/linkdeskapp/*
+conf/*
+conf-production/*
