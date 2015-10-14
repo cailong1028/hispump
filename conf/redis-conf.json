@@ -6,7 +6,7 @@
   "development": 0,
   "querying-trigger-data": "querying-trigger-data:execution",
   "downloaded-yet-prefix": "downloaded-yet:",
-  "heartbeat":"heartbeat:",
+  "heartbeat-prefix":"heartbeat:",
   "download-queues-prefix": "download-channel:",
   "session-prefix": "session:",
   "upload-queues-prefix": "upload-channel:",

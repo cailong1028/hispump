@@ -8,5 +8,8 @@
       "maxAge": 86400000,
       "httpOnly": true
     }
+  },
+  "heartbeat": {
+    "expireTime": 30
   }
 }
