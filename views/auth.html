@@ -3,36 +3,166 @@
 <head>
     <meta charset="utf-8">
     <title>Rivamed统一服务平台</title>
-    <script src="/javascripts/static/jquery/jquery.min.js"></script>
-    <script src="/javascripts/static/jquery-form/jquery.form.js"></script>
-    <script src="/javascripts/static/sha1/sha1.js"></script>
-    <script>
-        $(function(){
-            $('button#submit').click(function(){
+    <link rel="stylesheet" href="http://127.0.0.1:5000/css/bootstrap/bootstrap.min.css">
+    <script src="http://127.0.0.1:5000/jslib/jquery/jquery.min.js"></script>
+    <script src="http://127.0.0.1:5000/jslib/sha1/sha1.js"></script>
+    <style>
+        body {
+            background: transparent url('http://127.0.0.1:5000/images/auth_bg.jpg') no-repeat center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        a {
+            color: #1AA79A;
+        }
+
+        a:hover {
+            color: #096D64;
+        }
+
+        .opacityPanel {
+            border: none;
+            background-color: rgba(0, 0, 0, .3);
+        }
+
+        .form-group input{
+            color: white;
+            background-color: rgba(0,0,0,.3);
+        }
+        form .btn-primary {
+            background-color: rgba(0,0,0,.3);
+            //background-color: #2D9289;
+        }
+        form .btn-primary:hover {
+            background-color: #096D64;
+        }
+        p.text-danger{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <body style="">
+    <div id="bd_wrap">
+        <header id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
+                        <!-- <img id="logo" src="http://cdn.quickdesk.cn/images/logo_02.png">-->
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
+                        <div class="panel panel-default opacityPanel">
+                            <!--<div class="panel-heading">登录</div>-->
+                            <div class="panel-body">
+                                <form method="POST">
+                                    <div class="form-group">
+                                        <input id="username" class="form-control" name="username" type="text"
+                                               autofocus="" placeholder="用户登录名">
+                                    </div>
+                                    <p id="username_required_error" class="hide errormsg text-danger">
+                                        请输入用户登录名</p>
+
+                                    <div class="form-group"><input id="password" class="form-control"
+                                                                   name="password"
+                                                                   type="password" placeholder="密码">
+                                    </div>
+                                    <p id="password_required_error" class="hide errormsg text-danger">
+                                        请输入密码</p>
+
+                                    <p id="username_password_not_match" class="hide errormsg text-danger">
+                                        用户名或者密码不匹配</p>
+
+                                    <p id="server_error" class="hide errormsg text-danger">
+                                        服务端错误, 请联系系统管理员</p>
+
+                                    <p id="session_error" class="hide errormsg text-danger">
+                                        会话错误, 请联系系统管理员</p>
+
+                                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                        登录
+                                    </button>
+                                </form>
+                                <!--<p class="text-right" style="padding-top:10px;"><a href="/authz/forget" target="_blank">忘记密码?</a>-->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer id="footer">
+        <div class="container text-center text-muted">
+            <hr>
+            <p>Powered by <a href="http://www.hispump.com">hispump.com</a></p>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $form = $('form'), $username = $('#username'), $password = $('#password');
+            var warper = $('#bd_wrap');
+            var h6 = $(window).height() * 0.6;
+            var h2 = $(window).height() * 0.2;
+            warper.height($(window).height() * 0.6);
+            warper.css('margin-top', $(window).height() * 0.2);
+            $(window).resize(function () {
+                warper.height($(window).height() * 0.6);
+                warper.css('margin-top', $(window).height() * 0.2);
+            });
+            $("form").submit(function (e) {
+                e.preventDefault();
                 var username = $('input[name="username"]').val();
                 var password = $('input[name="password"]').val();
                 $.post('/auth', {
                     username: username,
                     password: sha1(password)
-                }, 'json').done(function(res){
+                }, 'json').done(function (res) {
                     //setTimeout(50)
                     window.location.href = '/';
                     return false;
-                }).fail(function(err){
-                    console.log(err);
+                }).fail(function (err) {
+                    if (err.status === 500) {
+                        $('#server_error').toggleClass('hide');
+                        return;
+                    }
+                    if (err.status === 400) {
+                        $('#session_error').toggleClass('hide');
+                        return;
+                    }
+                    if (err.status === 404) {
+                        $('#username_password_not_match').toggleClass('hide');
+                        return;
+                    }
                 });
             });
-        });
-    </script>
-</head>
-<body>
-<div>
-    <label>user name</label>
-    <input name="username" type="text">
-    <br>
-    <label>password</label>
-    <input name="password" type="password">
-    <button id="submit">submit</button>
+            $form.on('submit', function (e) {
+                $('form .errormsg').addClass('hide');
+                var valid = true;
+                if ($.trim($username.val()) === '') {
+                    //$('#username_required_error').toggleClass('hide');
+                    valid = false;
+                }
+                if ($.trim($password.val()) === '') {
+                    //$('#password_required_error').toggleClass('hide');
+                    valid = false;
+                }
+                if (!valid) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return valid;
+                }
+                return true;
+            })
+        });</script>
+    </body>
 </div>
 </body>
 </html>

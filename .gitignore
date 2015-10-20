@@ -14,4 +14,6 @@ conf-production/*
 public/jslib/*
 public/fonts/*
 public/linkdeskapp/*
+public/css/*
+public/images/*
 
