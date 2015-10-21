@@ -1,0 +1,35 @@
+{
+  "name": "amcharts2",
+  "authors": [
+    "amCharts <contact@amcharts.com>"
+  ],
+  "description": "JavaScript Charts V2",
+  "main": [
+    "js/amcharts.js"
+  ],
+  "keywords": [
+    "amcharts",
+    "charts",
+    "javascript"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "Custom",
+  "homepage": "http://www.amcharts.com/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/amcharts/amcharts2.git"
+  },
+  "version": "2.9.0",
+  "_release": "2.9.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.9.0",
+    "commit": "6468cdd5ca89eb6011c1bf54c0d09cba9d142497"
+  },
+  "_source": "git://github.com/amcharts/amcharts2.git",
+  "_target": "~2.9.0",
+  "_originalSource": "amcharts2",
+  "_direct": true
+}

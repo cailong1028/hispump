@@ -9,8 +9,14 @@
     <style>
         body {
             background: transparent url('http://127.0.0.1:5000/images/auth_bg.jpg') no-repeat center;
+            //background: transparent no-repeat center;
             background-size: cover;
             background-repeat: no-repeat;
+            -webkit-transition: All 2s ease;
+            -moz-transition: All 2s ease;
+            -o-transition: All 2s ease;
+            -ms-transition: All 2s ease;
+             transition: All 2s ease;
         }
 
         a {
@@ -40,6 +46,13 @@
         p.text-danger{
             color: white;
         }
+        .changeBg{
+            width: 100%;
+            text-align: right;
+        }
+        .changeBg a{
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -58,11 +71,14 @@
         <section id="main">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
+                    <div class="col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6">
                         <div class="panel panel-default opacityPanel">
                             <!--<div class="panel-heading">登录</div>-->
                             <div class="panel-body">
                                 <form method="POST">
+                                    <div class="changeBg">
+                                        <a id="changeBg" href="javascript: void(0);" class="text-muted ">点我</a>
+                                    </div>
                                     <div class="form-group">
                                         <input id="username" class="form-control" name="username" type="text"
                                                autofocus="" placeholder="用户登录名">
@@ -106,7 +122,12 @@
         </div>
     </footer>
     <script type="text/javascript">
+        var  changeBgFunc = function(){
+            var random = parseInt(Math.random()*46);
+            $('body').css('background-image', 'url(http://127.0.0.1:5000/images/pub_'+random+'.jpg)');
+        };
         $(document).ready(function () {
+            changeBgFunc();
             var $form = $('form'), $username = $('#username'), $password = $('#password');
             var warper = $('#bd_wrap');
             var h6 = $(window).height() * 0.6;
@@ -160,7 +181,10 @@
                     return valid;
                 }
                 return true;
-            })
+            });
+            $('#changeBg').click(function(){
+                changeBgFunc();
+            });
         });</script>
     </body>
 </div>

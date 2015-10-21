@@ -8,12 +8,12 @@ npm-debug.log
 .git
 log*
 #pm2.json
-conf
-conf/*
+#conf
+#conf/*
 conf-production/*
-public/jslib/*
-public/fonts/*
+#public/jslib/*
+#public/fonts/*
 public/linkdeskapp/*
-public/css/*
-public/images/*
+#public/css/*
+#public/images/*
 
