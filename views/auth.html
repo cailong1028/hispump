@@ -8,7 +8,7 @@
     <script src="http://127.0.0.1:5000/jslib/sha1/sha1.js"></script>
     <style>
         body {
-            background: transparent url('http://127.0.0.1:5000/images/auth_bg.jpg') no-repeat center;
+            background: transparent url('http://127.0.0.1:5000/images/production/pub_0.jpg') no-repeat center;
             //background: transparent no-repeat center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -123,11 +123,14 @@
     </footer>
     <script type="text/javascript">
         var  changeBgFunc = function(){
-            var random = parseInt(Math.random()*46);
-            $('body').css('background-image', 'url(http://127.0.0.1:5000/images/pub_'+random+'.jpg)');
+            var random = parseInt(Math.random()*5);
+            $('body').css('background-image', 'url(http://127.0.0.1:5000/images/production/pub_'+random+'.jpg)');
         };
         $(document).ready(function () {
             changeBgFunc();
+            setInterval(function(){
+                changeBgFunc();
+            }, 10000);
             var $form = $('form'), $username = $('#username'), $password = $('#password');
             var warper = $('#bd_wrap');
             var h6 = $(window).height() * 0.6;
