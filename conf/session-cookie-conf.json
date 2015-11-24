@@ -5,6 +5,8 @@
   "cookie": {
     "cookieName": "hispump",
     "cookieSettings": {
+      "domain": "127.0.0.1",
+      "path": "/",
       "maxAge": 86400000,
       "httpOnly": true
     }
