@@ -6,14 +6,15 @@ bower_components
 .idea/*
 npm-debug.log
 .git
-log*
+log/*
+log2/*
 #pm2.json
 #conf
 #conf/*
 conf-production/*
 #public/jslib/*
 #public/fonts/*
-public/linkdeskapp/*
+public/hispumpapp/*
 #public/css/*
 #public/images/*
 
