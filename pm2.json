@@ -18,5 +18,21 @@
     "log_date_format"  : "YYYY-MM-DD HH:mm Z",
     "error_file"       : "log/pm2/node-app.stderr.log",
     "out_file"         : "log/pm2/node-app.stdout.log"
+  },{
+    "name"        : "hispumpDownloadTask",
+    "cwd"         : ".",
+    "script"      : "./bin/task.js",
+    "env": {
+      "NODE_ENV": "production"
+    },
+    "instances"  : 1,
+    "exec_mode"  : "fork",
+    "exec_interpreter" : "node",
+    "min_uptime"       : "1000s",
+    "autorestart"      : true,
+    "max_restarts"     : 15,
+    "log_date_format"  : "YYYY-MM-DD HH:mm Z",
+    "error_file"       : "log/pm2/node-app-download.stderr.log",
+    "out_file"         : "log/pm2/node-app-download.stdout.log"
   }]
 }

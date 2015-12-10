@@ -107,16 +107,20 @@ beforeServerStartTask().done(appServer).fail(function () {
 });
 
 var afterSetAppServer = function(){
-	var watcher = new base.Watcher();
+	//var watcher = new base.Watcher();
 
-	var downloadTask = new DownloadTask();
+	//downloadTask 单独启动
+	/*var downloadTask = new DownloadTask();
 	downloadTask.run();
+	watcher.addTask(downloadTask);*/
 
 	var redisBrpopTask = new RedisBrpopTask();
 	redisBrpopTask.run();
 
-	watcher.addTask(downloadTask);
-	watcher.addTask(redisBrpopTask);
+	//暂时不适用watcher监控task
+	//watcher.addTask(redisBrpopTask);
+
+	//add by xujialei
 	/*var dbScanTask = require('./lib/task/dbScanTask');
 	 dbScanTask();*/
 };
