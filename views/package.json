@@ -1,0 +1,12 @@
+{
+  "name": "瑞华抗原高值耗材管理系统",
+  "version": "0.0.1",
+  "window": {
+    "show": false,
+    "icon": "http://127.0.0.1:5000/favicon.ico",
+    "toolbar": false,
+    "frame": false,
+    "fullscreen": true
+  },
+  "main": "http://127.0.0.1:5000"
+}

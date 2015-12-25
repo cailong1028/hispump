@@ -1,6 +1,6 @@
 {
   "master": {
-    "host": "192.168.10.248",
+    "host": "192.168.243.128",
     "port": 3306,
     "database": "hispump",
     "user": "cl",
@@ -9,7 +9,7 @@
     "ping-table": "test"
   },
   "slave1": {
-    "host": "192.168.10.248",
+    "host": "192.168.243.128",
     "port": 3306,
     "database": "hispump",
     "user": "cl",
